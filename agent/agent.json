@@ -1,0 +1,45 @@
+{
+  "name": "AgentPay",
+  "version": "1.0.0",
+  "description": "Programmable ETH spending policy enforcer for AI agents on Base. Humans define per-tx limits, daily caps, and recipient whitelists. The agent executes payments within those bounds via on-chain enforcement.",
+  "erc8004": {
+    "agentId": 32482,
+    "registrationTxn": "https://basescan.org/tx/0xe03e1bc1677a96d744f2a98193f96462699c437385e7e0850cd76065b7d58d4b",
+    "ownerAddress": "0x8d8784EDB360643d10e6570a6a0472087E74c8BF"
+  },
+  "operator": {
+    "name": "Desmond Tunyinko",
+    "walletAddress": "0x8d8784EDB360643d10e6570a6a0472087E74c8BF"
+  },
+  "model": "claude-sonnet-4-6",
+  "harness": "claude-code",
+  "framework": "anthropic-agents-sdk",
+  "capabilities": [
+    "on-chain payment execution",
+    "policy enforcement",
+    "spending limit management",
+    "recipient whitelist validation",
+    "daily spend tracking"
+  ],
+  "tools": [
+    {
+      "name": "pay",
+      "description": "Execute ETH payment within policy limits",
+      "contract": "0x8bf725b1bDF9d760b0F47FdF36Cf7c9E8d4FFFfB",
+      "network": "base-sepolia",
+      "chainId": 84532
+    },
+    {
+      "name": "getPolicy",
+      "description": "Read current spending policy and remaining allowances",
+      "contract": "0x8bf725b1bDF9d760b0F47FdF36Cf7c9E8d4FFFfB",
+      "network": "base-sepolia",
+      "chainId": 84532
+    }
+  ],
+  "contractAddress": "0x8bf725b1bDF9d760b0F47FdF36Cf7c9E8d4FFFfB",
+  "network": "base-sepolia",
+  "chainId": 84532,
+  "repoURL": "https://github.com/Darlington6/agentpay",
+  "deployedURL": "https://agentpay-nu.vercel.app"
+}

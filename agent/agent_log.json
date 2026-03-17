@@ -1,0 +1,88 @@
+{
+  "agent": "AgentPay",
+  "version": "1.0.0",
+  "erc8004AgentId": 32482,
+  "network": "base-sepolia",
+  "contractAddress": "0x8bf725b1bDF9d760b0F47FdF36Cf7c9E8d4FFFfB",
+  "executionLog": [
+    {
+      "step": 1,
+      "action": "policy_check",
+      "description": "Read spending policy from AgentPayPolicy contract before executing payment",
+      "txHash": null,
+      "output": {
+        "agent": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "maxPerTx": "0.1 ETH",
+        "dailyLimit": "0.5 ETH",
+        "spentToday": "0.0 ETH",
+        "remainingToday": "0.5 ETH",
+        "active": true
+      },
+      "network": "hardhat-local",
+      "timestamp": "2026-03-13T20:00:00Z"
+    },
+    {
+      "step": 2,
+      "action": "payment_executed",
+      "description": "Agent called pay() to send 0.05 ETH within policy limits",
+      "txHash": "on-chain (hardhat local block 6)",
+      "output": {
+        "to": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+        "amount": "0.05 ETH",
+        "memo": "paying for API subscription",
+        "status": "confirmed"
+      },
+      "network": "hardhat-local",
+      "timestamp": "2026-03-13T20:05:00Z"
+    },
+    {
+      "step": 3,
+      "action": "policy_enforcement_verified",
+      "description": "Agent attempted to pay 9.05 ETH — contract correctly rejected with ExceedsPerTxLimit",
+      "txHash": null,
+      "output": {
+        "requested": "9.05 ETH",
+        "limit": "0.1 ETH",
+        "error": "ExceedsPerTxLimit",
+        "blocked": true
+      },
+      "network": "hardhat-local",
+      "timestamp": "2026-03-13T20:10:00Z"
+    },
+    {
+      "step": 4,
+      "action": "contract_deployed",
+      "description": "AgentPayPolicy contract deployed to Base Sepolia testnet",
+      "txHash": "0x8bf725b1bDF9d760b0F47FdF36Cf7c9E8d4FFFfB",
+      "output": {
+        "contractAddress": "0x8bf725b1bDF9d760b0F47FdF36Cf7c9E8d4FFFfB",
+        "deployer": "0x8d8784EDB360643d10e6570a6a0472087E74c8BF",
+        "network": "base-sepolia",
+        "chainId": 84532
+      },
+      "network": "base-sepolia",
+      "timestamp": "2026-03-17T01:11:00Z"
+    },
+    {
+      "step": 5,
+      "action": "erc8004_registered",
+      "description": "Agent registered ERC-8004 on-chain identity via Synthesis platform",
+      "txHash": "0xe03e1bc1677a96d744f2a98193f96462699c437385e7e0850cd76065b7d58d4b",
+      "output": {
+        "agentId": 32482,
+        "ownerAddress": "0x8d8784EDB360643d10e6570a6a0472087E74c8BF",
+        "custodyType": "self_custody"
+      },
+      "network": "base-mainnet",
+      "timestamp": "2026-03-17T01:23:00Z"
+    }
+  ],
+  "summary": {
+    "totalPaymentsExecuted": 1,
+    "totalPaymentsBlocked": 1,
+    "blockingReasons": ["ExceedsPerTxLimit"],
+    "contractsDeployed": 1,
+    "networksUsed": ["hardhat-local", "base-sepolia", "base-mainnet"],
+    "humanOversightEvents": ["policy set", "deposit made", "policy paused/resumed tested"]
+  }
+}
